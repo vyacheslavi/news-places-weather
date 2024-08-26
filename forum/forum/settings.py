@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 import os
 from pathlib import Path
+from datetime import time
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +39,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_celery_results",
+    "django_celery_beat",
     "django_summernote",
+    "rest_framework",
+    "constance",
     "api",
 ]
 
@@ -129,7 +134,6 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-MAX_PREVIEW_IMAGE_SIZE = 200
 SUMMERNOTE_CONFIG = {
     "iframe": True,
     "summernote": {
@@ -151,3 +155,28 @@ SUMMERNOTE_CONFIG = {
 }
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+
+CONSTANCE_CONFIG = {
+    "REPICIENTS": (
+        "ALL",
+        "The list of recipients who will receive notifications",
+    ),
+    "THEME_OF_MESSAGE": ("News", "The theme of the message"),
+    "TEXT_OF_MESSAGE": ("Hello, world!", "The text of the message"),
+    "TIME_OF_SENDING_MESSAGE": (
+        time(
+            12,
+            30,
+        ),
+        "The time of sending message",
+    ),
+}
+CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
+
+
+# Celery Configuration Options
+CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60
+CELERY_RESULT_BACKEND = "django-db"
