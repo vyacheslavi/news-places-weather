@@ -135,10 +135,7 @@ SUMMERNOTE_CONFIG = {
     "summernote": {
         "width": "100%",
         "height": "480",
-        # Use proper language setting automatically (default)
         "lang": None,
-        # Toolbar customization
-        # https://summernote.org/deep-dive/#custom-toolbar-popover
         "toolbar": [
             ["style", ["style"]],
             ["font", ["bold", "underline", "clear"]],
@@ -149,15 +146,8 @@ SUMMERNOTE_CONFIG = {
             ["insert", ["link", "picture", "video"]],
             ["view", ["fullscreen", "codeview", "help"]],
         ],
-        # Or, explicitly set language/locale for editor
         "lang": "ko-KR",
-        # You can also add custom settings for external plugins
     },
-    # "css": (
-    #     "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.29.0/theme/monokai.min.css",
-    # ),
 }
 
-
 X_FRAME_OPTIONS = "SAMEORIGIN"
-# SUMMERNOTE_THEME = "bs3"
