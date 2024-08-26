@@ -11,6 +11,9 @@ django = "^5.1"
 djangorestframework = "^3.15.2"
 pillow = "^10.4.0"
 django-summernote = "^0.8.20.0"
+django-constance = {extras = ["redis"], version = "^4.0.1"}
+celery = "^5.4.0"
+pytz = "^2024.1"
 
 
 [build-system]
