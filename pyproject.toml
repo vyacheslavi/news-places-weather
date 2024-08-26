@@ -15,6 +15,7 @@ django-constance = {extras = ["redis"], version = "^4.0.1"}
 celery = "^5.4.0"
 pytz = "^2024.1"
 django-celery-results = "^2.5.1"
+django-celery-beat = "^2.7.0"
 
 
 [build-system]
