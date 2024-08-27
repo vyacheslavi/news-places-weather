@@ -236,6 +236,17 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-admin-geomap"
+version = "1.6"
+description = "Displaying objects at the maps in the Django views and administration site."
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "django_admin_geomap-1.6-py3-none-any.whl", hash = "sha256:1e77201cf8c9f423be9d529e10e333411c9a4245a123ef94860c92979399c366"},
+    {file = "django_admin_geomap-1.6.tar.gz", hash = "sha256:31b24f618b62f1e068d6364891f016fff1e9a438a04db93f438dc5729825719d"},
+]
+
+[[package]]
 name = "django-celery-beat"
 version = "2.7.0"
 description = "Database-backed Periodic Tasks."
@@ -619,4 +630,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "4771c706d26898eb20f1004f69bec534b07e3eb26b75363415d005a18b771f26"
+content-hash = "3a1e1d950090578a436bca4a751383277a07e3a7d7b26e9ca771f558e3a81b61"
