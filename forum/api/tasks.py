@@ -1,18 +1,17 @@
-from datetime import time
+from datetime import datetime
 from django.core.mail import send_mass_mail
 from django.contrib.auth.models import User
 
 from celery import shared_task
 from celery.utils.log import get_task_logger
-from django_celery_beat.models import PeriodicTask
 
-from constance import config
+from .models import News
 
 logger = get_task_logger(__name__)
 
 
 @shared_task
-def send_emails_to_users(
+def send_news_to_users(
     repicients: list[str],
     theme: str,
     text: str,
@@ -24,6 +23,9 @@ def send_emails_to_users(
         for user in users:
             repicients.append(user.email)
 
+    urls = get_todays_news_url()
+    text += urls
+
     data_tuple = (theme, text, from_address, repicients)
     sending_mail = send_mass_mail(
         data_tuple,
@@ -31,3 +33,14 @@ def send_emails_to_users(
     )
     print("Email Sent to " + str(len(repicients)) + " users")
     return sending_mail
+
+
+def get_todays_news_url() -> str | None:
+    today = datetime.date.today()
+    todays_news = News.objects.filter(created_at__date=today)
+    if todays_news:
+        urls = ""
+        for news in todays_news:
+            urls = (f"http://localhost:8000/api/v1/news/{news.id}/",)
+
+        return urls
