@@ -5,9 +5,6 @@ from forum import settings
 from .models import Place, Weather
 from .serializers import WeatherSerializer
 
-API_TOKEN = "70e065f59fcbc655a0312c28a8417062"
-
-
 def get_weather(place: Place):
     owm = OWM(API_TOKEN)
     mgr = owm.weather_manager()
