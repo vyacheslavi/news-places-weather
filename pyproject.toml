@@ -17,6 +17,9 @@ pytz = "^2024.1"
 django-celery-results = "^2.5.1"
 django-celery-beat = "^2.7.0"
 django-admin-geomap = "^1.6"
+django-import-export = "^4.1.1"
+tablib = {version = "3.5.0", extras = ["xlsx"]}
+pyowm = "^3.3.0"
 
 
 [build-system]

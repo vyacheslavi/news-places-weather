@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django_summernote",
     "rest_framework",
     "constance",
+    "import_export",
     "django_admin_geomap",
     "api",
 ]
