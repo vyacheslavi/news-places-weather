@@ -65,6 +65,9 @@ class Place(models.Model, GeoItem):
     class Meta:
         ordering = ("-created_at",)
 
+    def __str__(self) -> str:
+        return self.name
+
     @property
     def geomap_longitude(self):
         return str(self.lon)
