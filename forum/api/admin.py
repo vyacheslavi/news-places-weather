@@ -5,7 +5,7 @@ from django_summernote.admin import SummernoteModelAdmin
 from django_admin_geomap import ModelAdmin
 
 from import_export import resources
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ExportActionMixin
 
 from api.models import News, Place, Weather
 
@@ -60,7 +60,7 @@ class PlaceAdmin(ModelAdmin, ImportExportModelAdmin):
 
 
 @admin.register(Weather)
-class WeatherAdmin(ModelAdmin, ImportExportModelAdmin):
+class WeatherAdmin(ImportExportModelAdmin, ExportActionMixin):
     list_display = (
         "place",
         "temperature",
@@ -71,4 +71,13 @@ class WeatherAdmin(ModelAdmin, ImportExportModelAdmin):
         "date",
     )
 
+    readonly_fields = [field.name for field in Weather._meta.fields]
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    list_filter = ("place", "date")
     resource_class = WeatherResource
