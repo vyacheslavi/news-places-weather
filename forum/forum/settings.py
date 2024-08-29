@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django_summernote",
     "rest_framework",
     "constance",
+    "django_admin_geomap",
     "api",
 ]
 
@@ -58,6 +59,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "forum.urls"
+
 
 TEMPLATES = [
     {
@@ -127,6 +129,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -156,27 +160,39 @@ SUMMERNOTE_CONFIG = {
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
+# from django.contrib.auth.models import User
 
 CONSTANCE_CONFIG = {
     "REPICIENTS": (
         "ALL",
-        "The list of recipients who will receive notifications",
+        "The list of repicient's email addresses who will receive the message",
     ),
     "THEME_OF_MESSAGE": ("News", "The theme of the message"),
     "TEXT_OF_MESSAGE": ("Hello, world!", "The text of the message"),
     "TIME_OF_SENDING_MESSAGE": (
-        time(
-            12,
-            30,
-        ),
+        time(12, 30),
         "The time of sending message",
     ),
+    "FROM_EMAIL": ("example@mail.ru", "The email address"),
 }
 CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
 
 
 # Celery Configuration Options
-CELERY_TIMEZONE = "Europe/Moscow"
+# CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_EXTENDED = True
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# CELERY_USE_DEPRECATED_PYTZ = True
+
+from import_export.formats.base_formats import XLSX
+
+IMPORT_EXPORT_FORMATS = [XLSX]
+
+OWM_API_KEY = os.getenv("OWM_API_KEY")
