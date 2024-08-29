@@ -22,10 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-s_%$k%k0cmon!h825+7yor4ms!ha+mr&lbk2u=niu(5w_301sa"
+
+SECRET_KEY = os.environ.get("DJANGO_SECRET")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -196,4 +197,4 @@ from import_export.formats.base_formats import XLSX
 
 IMPORT_EXPORT_FORMATS = [XLSX]
 
-OWM_API_KEY = os.getenv("OWM_API_KEY")
+OWM_API_KEY = os.environ.get("OWN_API_KEY")
