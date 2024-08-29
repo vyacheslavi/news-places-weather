@@ -54,9 +54,13 @@ Django, DRF, Celery
 
 `python manage.py runserver`
 
-9) run celery and celery-beat
+9) run redis in docker container
+
+`docker compose -f docker-compose/redis.yml up --build -d`
+
+10) run celery and celery-beat
 
 `celery -A forum.celery worker -l info --pool=solo`
 `celery -A forum.celery beat -l info`
 
-9) and open localhost:8000 on your browser to view the app.
+11) and open localhost:8000 on your browser to view the app.
