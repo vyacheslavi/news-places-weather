@@ -55,6 +55,10 @@ app.conf.beat_schedule = {
             "from_address": config.FROM_EMAIL,
         },
     },
+    "collecting_weather_reports": {
+        "task": "api.tasks.get_weather_from_places_task",
+        "schedule": 60 * 60,
+    },
 }
 
 

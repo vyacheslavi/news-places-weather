@@ -6,6 +6,7 @@ from celery import shared_task
 from celery.utils.log import get_task_logger
 
 from .models import News
+from .services import get_weather_from_places
 
 logger = get_task_logger(__name__)
 
@@ -44,3 +45,8 @@ def get_todays_news_url() -> str | None:
             urls = (f"http://localhost:8000/api/v1/news/{news.id}/",)
 
         return urls
+
+
+@shared_task
+def get_weather_from_places_task():
+    get_weather_from_places()
