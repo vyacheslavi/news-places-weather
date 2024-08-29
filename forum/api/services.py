@@ -1,12 +1,13 @@
 from pyowm import OWM
 
-from forum import settings
+from forum.forum import settings
 
 from .models import Place, Weather
 from .serializers import WeatherSerializer
 
+
 def get_weather(place: Place):
-    owm = OWM(API_TOKEN)
+    owm = OWM(settings.OWM_API_KEY)
     mgr = owm.weather_manager()
     observation = mgr.weather_at_coords(
         lat=float(place.lat),
