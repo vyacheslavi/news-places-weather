@@ -23,9 +23,9 @@ Django, DRF, Celery
 
 2) create and start a a virtual environment
 
-`virtualenv env --no-site-packages`
+`python -m venv venv`
 
-`source env/bin/activate`
+`venv/Scripts/activate`
 
 3) Install the project dependencies:
 
