@@ -20,6 +20,7 @@ django-admin-geomap = "^1.6"
 django-import-export = "^4.1.1"
 tablib = {version = "3.5.0", extras = ["xlsx"]}
 pyowm = "^3.3.0"
+python-dotenv = "^1.0.1"
 
 
 [build-system]

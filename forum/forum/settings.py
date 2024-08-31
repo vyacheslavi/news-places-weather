@@ -14,6 +14,11 @@ import os
 from pathlib import Path
 from datetime import time
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,8 +30,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET")
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG")
+
+
+OWM_API_KEY = os.environ.get("OWN_API_KEY")
+
 
 ALLOWED_HOSTS = ["*"]
 
@@ -196,5 +206,3 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 from import_export.formats.base_formats import XLSX
 
 IMPORT_EXPORT_FORMATS = [XLSX]
-
-OWM_API_KEY = os.environ.get("OWN_API_KEY")
