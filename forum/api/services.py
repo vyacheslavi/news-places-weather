@@ -1,8 +1,8 @@
 from pyowm import OWM
 
-from forum.forum import settings
+from django.conf import settings
 
-from .models import Place, Weather
+from .models import Place
 from .serializers import WeatherSerializer
 
 
