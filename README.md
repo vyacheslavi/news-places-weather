@@ -19,7 +19,7 @@ Django, DRF, Celery
 
 1) clone the project
 
-`git clone https://github.com/erinallard/instagram_miner.git`
+`git clone https://github.com/vyacheslavi/news-places-weather.git`
 
 2) create and start a a virtual environment
 
