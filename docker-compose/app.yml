@@ -1,0 +1,101 @@
+version: "3.9"
+
+services:
+  main-app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: main-app
+    ports:
+      - "${DJANGO_PORT}:8000"
+    command: "sh /entrypoint.sh"
+    env_file:
+      - ../forum/.env
+    depends_on:
+      - postgres
+    volumes:
+      - ..:/app/
+    networks:
+      - custom
+
+  db:
+    container_name: db
+    image: postgres:14.1-alpine
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    env_file:
+      - ../forum/.env
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
+    networks:
+      - custom
+
+  redis:
+    container_name: redis
+    image: redis:7.2.4-alpine3.19
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    hostname:
+    healthcheck:
+      ${REDIS_HOST}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - custom
+
+  celery:
+    container_name: celery-worker
+    restart: always
+    build:
+      context: .
+    command: celery -A ./forum/celery_app worker -l info
+    env_file:
+      - ../forum/.env
+    depends_on:
+      - db
+      - redis
+      - main-app
+    networks:
+      - custom
+
+  celery-beat:
+    container_name: celery-beat
+    restart: always
+    build:
+      context: .
+    command: celery -A ./forum/celery_app beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    env_file:
+      - ../forum/.env
+    depends_on:
+      - db
+      - redis
+      - main-app
+      - celery
+    networks:
+    - custom
+
+volumes:
+  db-data:
+
+networks:
+  custom:
+    driver: bridge
