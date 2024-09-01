@@ -67,7 +67,7 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A ./forum/celery_app worker -l info
+    command: celery -A forum.celery_app worker -l info
     env_file:
       - ../forum/.env
     depends_on:
@@ -82,7 +82,7 @@ services:
     restart: always
     build:
       context: .
-    command: celery -A ./forum/celery_app beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    command: celery -A forum.celery_app beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     env_file:
       - ../forum/.env
     depends_on:
