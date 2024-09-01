@@ -178,14 +178,12 @@ CONSTANCE_CONFIG = {
     "REPICIENTS": (
         "ALL",
         "The list of repicient's email addresses who will receive the message",
+        str,
     ),
-    "THEME_OF_MESSAGE": ("News", "The theme of the message"),
-    "TEXT_OF_MESSAGE": ("Hello, world!", "The text of the message"),
-    "TIME_OF_SENDING_MESSAGE": (
-        time(12, 30),
-        "The time of sending message",
-    ),
-    "FROM_EMAIL": ("example@mail.ru", "The email address"),
+    "THEME_OF_MESSAGE": ("News", "The theme of the message", str),
+    "TEXT_OF_MESSAGE": ("Hello, world!", "The text of the message", str),
+    "TIME_OF_SENDING_MESSAGE": (time(12, 30), "The time of sending message", time),
+    "FROM_EMAIL": ("example@mail.ru", "The email address", str),
 }
 CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
 
