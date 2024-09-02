@@ -15,6 +15,9 @@ Django, DRF, Celery
 7) Асинхронная задачи на получение сводки погоды из внешнего API (pyowm, django-celery-beat)
 
 
+docker compose сделал, но не тестил, т.к. ресурсов на ноуте не хватает.
+Поэтому проверен только локальный запуск
+
 ## A few steps for cloning and run project
 
 1) clone the project
