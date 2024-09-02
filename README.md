@@ -16,7 +16,7 @@ Django, DRF, Celery
 
 
 docker compose сделал, но не тестил, т.к. ресурсов на ноуте не хватает.
-Поэтому проверен только локальный запуск
+Поэтому проверен только локальный запуск. Ключ к openweathermap.org прилагается.
 
 ## A few steps for cloning and run project
 
