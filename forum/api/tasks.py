@@ -13,7 +13,7 @@ logger = get_task_logger(__name__)
 
 @shared_task
 def send_news_to_users(
-    repicients: list[str],
+    repicients: list[str] | str,
     theme: str,
     text: str,
     from_address: str,
