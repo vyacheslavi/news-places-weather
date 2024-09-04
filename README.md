@@ -61,6 +61,7 @@ docker compose сделал, но не тестил, т.к. ресурсов н�
 8) run celery and celery-beat
 
 `celery -A forum.celery worker -l info --pool=solo`
+
 `celery -A forum.celery beat -l info`
 
 9) and open localhost:8000 on your browser to view the app.
