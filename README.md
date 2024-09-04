@@ -15,16 +15,33 @@ Django, DRF, Celery
 6. Интеграция виджета карты в админ панель (django-admin-geomap)
 7. Асинхронная задачи на получение сводки погоды из внешнего API (pyowm, django-celery-beat)
 
-docker compose сделал, но не тестил, т.к. ресурсов на ноуте не хватает.
-Поэтому проверен только локальный запуск. Ключ к openweathermap.org прилагается.
-
 ## Requirements
 
 - [Docker](https://www.docker.com/get-started)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - [GNU Make](https://www.gnu.org/software/make/)
 
-## A few steps for cloning and run project
+## Run project with docker-compose
+
+set in env file `DJANGO_DEBUG=false`
+
+### Implemented Commands
+
+    * `make app` - up application and database/infrastructure
+    * `make app-logs` - follow the logs in app container
+    * `make app-down` - down application and all infrastructure
+    * `make redis-logs` - follow the logs in redis container
+    * `make c-b-logs` - follow the logs in celery-beat container
+    * `make c-w-logs` - follow the logs in celery-worker container
+
+### Most Used Django Specific Commands
+
+    * `make migration`s - make migrations to models
+    * `make migrate` - apply all made migrations
+    * `make collectstatic` - collect static
+    * `make superuser` - create admin user
+
+## Run project local
 
 1. clone the project
 
@@ -39,37 +56,39 @@ docker compose сделал, но не тестил, т.к. ресурсов н�
 3. Install the project dependencies:
 
 `pip install poetry`
+
 `poetry config virtualenvs.create false`
+
 `poetry install`
 
-4. then run
+4. create .env file and set
 
-`cd forum`
-`python manage.py migrate`
+`DJANGO_DEBUG=true`
 
-5. create admin account
+5. then run
 
-`python manage.py createsuperuser`
-
-6. then to makemigrations for the app
+`cd forum` # execute all commands from this directory
 
 `python manage.py makemigrations`
 
-7. then again run
-
 `python manage.py migrate`
 
-8. to start the development server
+6. create admin account
+
+`python manage.py createsuperuser`
+
+7. to start the development server
 
 `python manage.py runserver`
 
-9. run redis in docker container
+8. run redis in docker container
 
-`docker compose -f docker_compose/redis.yml up --build -d`
+`docker compose -f docker-compose/redis.yml up --build -d`
 
-10. run celery and celery-beat
+9. run celery and celery-beat
 
 `celery -A forum.celery worker -l info --pool=solo`
+
 `celery -A forum.celery beat -l info`
 
-11. and open localhost:8000 on your browser to view the app.
+10. and open localhost:8000 on your browser to view the app.
