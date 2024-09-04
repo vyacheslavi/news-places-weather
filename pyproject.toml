@@ -21,6 +21,7 @@ django-import-export = "^4.1.1"
 tablib = {version = "3.5.0", extras = ["xlsx"]}
 pyowm = "^3.3.0"
 python-dotenv = "^1.0.1"
+psycopg2 = "^2.9.9"
 
 
 [build-system]
