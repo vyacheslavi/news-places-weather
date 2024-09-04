@@ -33,37 +33,34 @@ docker compose сделал, но не тестил, т.к. ресурсов н�
 3) Install the project dependencies:
 
 `pip install poetry`
+
 `poetry config virtualenvs.create false`
+
 `poetry install`
 
 4) then run
 
-`cd forum`
+`cd forum` # execute all commands from this directory
+
+`python manage.py makemigrations`
+
 `python manage.py migrate`
 
 5) create admin account
 
 `python manage.py createsuperuser`
 
-6) then to makemigrations for the app
-
-`python manage.py makemigrations`
-
-7) then again run
-
-`python manage.py migrate`
-
-8) to start the development server
+6) to start the development server
 
 `python manage.py runserver`
 
-9) run redis in docker container
+7) run redis in docker container
 
-`docker compose -f docker-compose/redis.yml up --build -d`
+`docker compose -f ../docker-compose/redis.yml up --build -d`
 
-10) run celery and celery-beat
+8) run celery and celery-beat
 
 `celery -A forum.celery worker -l info --pool=solo`
 `celery -A forum.celery beat -l info`
 
-11) and open localhost:8000 on your browser to view the app.
+9) and open localhost:8000 on your browser to view the app.
