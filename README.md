@@ -27,19 +27,19 @@ set in env file `DJANGO_DEBUG=false`
 
 ### Implemented Commands
 
-    * `make app` - up application and database/infrastructure
-    * `make app-logs` - follow the logs in app container
-    * `make app-down` - down application and all infrastructure
-    * `make redis-logs` - follow the logs in redis container
-    * `make c-b-logs` - follow the logs in celery-beat container
-    * `make c-w-logs` - follow the logs in celery-worker container
+ * `make app` - up application and database/infrastructure
+ * `make app-logs` - follow the logs in app container
+ * `make app-down` - down application and all infrastructure
+ * `make redis-logs` - follow the logs in redis container
+ * `make c-b-logs` - follow the logs in celery-beat container
+ * `make c-w-logs` - follow the logs in celery-worker container
 
 ### Most Used Django Specific Commands
 
-    * `make migration`s - make migrations to models
-    * `make migrate` - apply all made migrations
-    * `make collectstatic` - collect static
-    * `make superuser` - create admin user
+ * `make migration`s - make migrations to models
+ * `make migrate` - apply all made migrations
+ * `make collectstatic` - collect static
+ * `make superuser` - create admin user
 
 ## Run project local
 
