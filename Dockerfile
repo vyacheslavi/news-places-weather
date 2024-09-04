@@ -1,4 +1,4 @@
-FROM python:3.10.11
+FROM python:3.10.11-slim-bullseye
 
 
 ENV PYTHONDONTWRITEBYTECODE=1\
@@ -12,17 +12,24 @@ ENV PYTHONDONTWRITEBYTECODE=1\
     POETRY_HOME='/usr/local'\
     POETRY_VERSION=1.8.3
 
+WORKDIR /app
 
-RUN mkdir -p /usr/src/app/
+RUN apt update -y && \
+    apt install -y python3-dev \
+    gcc \
+    musl-dev \
+    libpq-dev \
+    nmap
+
+ADD pyproject.toml /app
 
 RUN pip install --upgrade pip
-RUN curl -sSL https://install.python-poetry.org | python3 -
+RUN pip install poetry
 
-COPY . /usr/src/app/
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-root --no-interaction --no-ansi
 
-WORKDIR /usr/src/app/
+COPY . /app/
+# COPY entrypoint.sh /entrypoint.sh
 
-RUN  poetry config virtualenvs.create false && poetry install
-
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
