@@ -63,7 +63,7 @@ set in env file `DJANGO_DEBUG=false`
 
 4. create .env file and set
 
-`DJANGO_DEBUG=true`
+`DJANGO_DEBUG=True`
 
 5. then run
 
