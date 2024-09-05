@@ -36,7 +36,7 @@ set in env file `DJANGO_DEBUG=false`
 
 ### Most Used Django Specific Commands
 
- * `make migration`s - make migrations to models
+ * `make migrations` - make migrations to models
  * `make migrate` - apply all made migrations
  * `make collectstatic` - collect static
  * `make superuser` - create admin user
