@@ -83,7 +83,7 @@ set in env file `DJANGO_DEBUG=false`
 
 8. run redis in docker container
 
-`docker compose -f docker-compose/redis.yml up --build -d`
+`docker compose -f ../docker_compose/redis.yml up --build -d`
 
 9. run celery and celery-beat
 
