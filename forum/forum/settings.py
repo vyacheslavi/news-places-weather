@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG")
+DEBUG = os.environ.get("DJANGO_DEBUG", False) == "True"
 
 
 OWM_API_KEY = os.environ.get("OWN_API_KEY")
@@ -153,7 +153,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 
 # Default primary key field type
@@ -201,7 +201,7 @@ CONSTANCE_BACKEND = "constance.backends.database.DatabaseBackend"
 
 
 # Celery Configuration Options
-# CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TIMEZONE = "Asia/Krasnoyarsk"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 CELERY_RESULT_BACKEND = "django-db"
