@@ -11,8 +11,8 @@ services:
     command: >
       sh -c "python3 ./forum/manage.py makemigrations &&
              python3 ./forum/manage.py migrate &&
-             python3 ./forum/manage.py runserver 0.0.0.0:8000 &&
-             python ./forum/manage.py collectstatic --no-input --clear"
+             python3 ./forum/manage.py runserver 0.0.0.0:8000 --insecure &&
+             python ./forum/manage.py collectstatic"
     env_file:
       - ../forum/.env
     depends_on:
@@ -25,6 +25,7 @@ services:
   db:
     container_name: db
     image: postgres:14.1-alpine
+    hostname: ${POSTGRES_HOST}
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     environment:
